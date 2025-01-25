@@ -2,10 +2,11 @@ import js from "@eslint/js";
 import parser from "@typescript-eslint/parser";
 import preferArrowPlugin from "eslint-plugin-prefer-arrow";
 import typescriptPlugin from "@typescript-eslint/eslint-plugin";
+import jsdoc from 'eslint-plugin-jsdoc';
 
 export default [
   {
-    ignores: ["node_modules/**", "dist/**", "**/*.config.js"],
+    ignores: ["node_modules/**", "dist/**", "**/*.config.js", "**/*.config.mjs"],
     languageOptions: {
       ecmaVersion: 2022,
       sourceType: "module",
@@ -17,7 +18,8 @@ export default [
     },
     plugins: {
       "prefer-arrow": preferArrowPlugin,
-      "@typescript-eslint": typescriptPlugin,
+      typescriptPlugin,
+      jsdoc,
     },
     rules: {
       ...js.configs.recommended.rules,
@@ -91,7 +93,7 @@ export default [
       "prefer-template": "error",
       radix: "error",
       "require-await": "error",
-      "require-jsdoc": [
+      "jsdoc/require-jsdoc": [
         "off",
         { require: { FunctionDeclaration: true, MethodDefinition: true, ClassDeclaration: true, ArrowFunctionExpression: false, FunctionExpression: true } },
       ],
