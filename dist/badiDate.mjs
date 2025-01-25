@@ -146,11 +146,11 @@ var en = /*#__PURE__*/Object.freeze({
     defaultFormat: defaultFormat
 });
 
-/* eslint-disable dot-notation, line-comment-position, camelcase, sort-imports */
+ 
 const badiLocale = { en, default: en };
 const setDefaultLanguage = (language) => {
     if (badiLocale[language] === undefined) {
-        // eslint-disable-next-line no-console
+         
         console.log('Chosen language does not exist. Setting has not been changed.');
     }
     else {
@@ -163,7 +163,7 @@ const setUnderlineFormat = (format) => {
         underlineFormat = format;
     }
     else {
-        // eslint-disable-next-line no-console
+         
         console.log('Invalid underline format. Choose one of ["css", "u", "diacritic", "none"]. ' +
             'Setting has not been changed.');
     }
@@ -174,7 +174,7 @@ const formatTokens = [
     ['dd', 'DD', 'mm', 'MM', 'ww', 'WW', 'yv', 'YV', 'vv', 'kk', 'yy', 'BE', 'BC', 'Va'],
     ['d', 'D', 'm', 'M', 'W', 'v', 'k', 'y']
 ];
-// eslint-disable-next-line complexity
+ 
 const formatBadiDate = (badiDate, formatString, language) => {
     if (!badiDate.isValid) {
         return 'Not a valid Badí‘ date';
@@ -225,7 +225,7 @@ const formatBadiDate = (badiDate, formatString, language) => {
     }
     return formattedDate;
 };
-// eslint-disable-next-line complexity
+ 
 const getFormatItem = (badiDate, token, language) => {
     switch (token) {
         // Single character tokens
@@ -376,7 +376,7 @@ const formatItemFallback = (language, category, index) => {
 const languageFallback = (languageCode) => {
     if (languageCode.includes('-')) {
         return languageCode.split('-')[0];
-        // eslint-disable-next-line no-negated-condition
+         
     }
     else if (languageCode !== 'default') {
         return 'default';
