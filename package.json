@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "badidate",
   "version": "3.0.2",
   "description": "A library for dates in the Badí' (or Bahá'í) calendar.",
@@ -17,6 +18,9 @@
     "calculateUncertainties": "ts-node-dev --transpile-only res/uncertainties.ts"
   },
   "dependencies": {
+    "@eslint/eslintrc": "^3.2.0",
+    "@eslint/js": "^9.19.0",
+    "eslint-define-config": "^2.1.0",
     "luxon": "^1.24.1"
   },
   "devDependencies": {
