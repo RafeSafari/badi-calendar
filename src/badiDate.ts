@@ -20,10 +20,10 @@ class BadiDate {
         try {
             if (this._isDateObject(date)) {
                 this._gregorianDate = luxon.DateTime.fromObject(
-                    { year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate(), zone: 'UTC' });
+                    { year: date.getFullYear(), month: date.getMonth() + 1, day: date.getDate() }, { zone: 'UTC' });
             } else if (luxon.DateTime.isDateTime(date)) {
                 this._gregorianDate = luxon.DateTime.fromObject(
-                    { year: date.year, month: date.month, day: date.day, zone: 'UTC' });
+                    { year: date.year, month: date.month, day: date.day }, { zone: 'UTC' });
             } else if (this._isYearMonthDay(date) || this._isYearHolyDayNumber(date)) {
                 this._setFromBadiDate(date);
             } else {
@@ -59,8 +59,8 @@ class BadiDate {
     }
 
     _notInValidGregorianDateRange(datetime: luxon.DateTime): boolean {
-        const lowerBound = luxon.DateTime.fromObject({ year: 1844, month: 3, day: 21, zone: 'UTC' });
-        const upperBound = luxon.DateTime.fromObject({ year: 2351, month: 3, day: 20, zone: 'UTC' });
+        const lowerBound = luxon.DateTime.fromObject({ year: 1844, month: 3, day: 21 }, { zone: 'UTC' });
+        const upperBound = luxon.DateTime.fromObject({ year: 2351, month: 3, day: 20 }, { zone: 'UTC' });
         return datetime < lowerBound || datetime > upperBound;
     }
 
@@ -69,14 +69,14 @@ class BadiDate {
             throw new RangeError('Input date outside of valid range (1844-03-21 - 2351-03-20)');
         }
         const gregorianYear = this._gregorianDate.year;
-        const oldImplementationCutoff = luxon.DateTime.fromObject({ year: 2015, month: 3, day: 21, zone: 'UTC' });
+        const oldImplementationCutoff = luxon.DateTime.fromObject({ year: 2015, month: 3, day: 21 }, { zone: 'UTC' });
         if (this._gregorianDate < oldImplementationCutoff) {
             const { month, day } = this._gregorianDate;
             if (month < 3 || (month === 3 && day < 21)) {
-                this._nawRuz = luxon.DateTime.fromObject({ year: gregorianYear - 1, month: 3, day: 21, zone: 'UTC' });
+                this._nawRuz = luxon.DateTime.fromObject({ year: gregorianYear - 1, month: 3, day: 21 }, { zone: 'UTC' });
                 this._year = gregorianYear - 1844;
             } else {
-                this._nawRuz = luxon.DateTime.fromObject({ year: gregorianYear, month: 3, day: 21, zone: 'UTC' });
+                this._nawRuz = luxon.DateTime.fromObject({ year: gregorianYear, month: 3, day: 21 }, { zone: 'UTC' });
                 this._year = gregorianYear - 1843;
             }
             this._setOldAyyamiHaLength();
@@ -110,7 +110,7 @@ class BadiDate {
         if (this._year < 1 || this._year > 507) {
             throw new RangeError('Input date outside of valid range (1 - 507 B.E.)');
         } else if (this._year < 172) {
-            this._nawRuz = luxon.DateTime.fromObject({ year: 1843 + this._year, month: 3, day: 21, zone: 'UTC' });
+            this._nawRuz = luxon.DateTime.fromObject({ year: 1843 + this._year, month: 3, day: 21 }, { zone: 'UTC' });
             this._setOldAyyamiHaLength();
             this._yearTwinBirthdays = [12, 5, 13, 9];
         } else {
@@ -144,7 +144,7 @@ class BadiDate {
     }
 
     _setOldAyyamiHaLength() {
-        if (luxon.DateTime.fromObject({ year: this._nawRuz.year + 1 }).isInLeapYear) {
+        if (luxon.DateTime.fromObject({ year: this._nawRuz.year + 1 }/*, { zone: 'UTC' }*/).isInLeapYear) {
             this._ayyamiHaLength = 5;
         } else {
             this._ayyamiHaLength = 4;
@@ -169,7 +169,7 @@ class BadiDate {
         if (badiYears[0] === 'l4da') {
             const components = badiYears[this._year - 172].split('');
             nawRuz = luxon.DateTime.fromObject(
-                { year: this._year - 172 + 2015, month: 3, day: parseInt(components[0], 36), zone: 'UTC' });
+                { year: this._year - 172 + 2015, month: 3, day: parseInt(components[0], 36) }, { zone: 'UTC' });
             ayyamiHaLength = parseInt(components[1], 36);
             const TB1 = [parseInt(components[2], 36), parseInt(components[3], 36)];
             const TB2 = TB1[1] < 19 ? [TB1[0], TB1[1] + 1] : [TB1[0] + 1, 1];
