@@ -1,8 +1,8 @@
 {
   "type": "module",
-  "name": "badidate",
-  "version": "3.0.2",
-  "description": "A library for dates in the Badí' (or Bahá'í) calendar.",
+  "name": "badidate-fixed",
+  "version": "3.1.0",
+  "description": "A library for dates in the Badí' (or Bahá'í) calendar. This version is adapted for updated libraries and fixed early date leap years issue",
   "main": "dist/localBadiDate-msm-locales.js",
   "module": "dist/localBadiDate-msm-locales.m.js",
   "types": "dist/badiDate.d.ts",
@@ -53,7 +53,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/janrg/badiDate.git"
+    "url": "git+https://github.com/rafesafari/badi-calendar.git"
   },
   "keywords": [
     "Badí'",
@@ -61,14 +61,14 @@
     "Bahá'í",
     "calendar"
   ],
-  "author": "Jan Greis",
+  "author": "Rafe Safari",
   "contributors": [
     "Brett Zamir",
-    "Rafe Safari"
+    "Jan Greis"
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/janrg/badiDate/issues"
+    "url": "https://github.com/rafesafari/badi-calendar/issues"
   },
-  "homepage": "https://github.com/janrg/badiDate#readme"
+  "homepage": "https://github.com/rafesafari/badi-calendar#readme"
 }

@@ -9,6 +9,15 @@ with the provided `LocalBadiDate` class, local information can be generated incl
 and time of the Badí' date, the times for sunrise and solar noon, as well as - if applicable - the time for a Holy Day
 commemoration.
 
+## About This Fork
+
+This package is a fork of the original `badidate` package, created by [Jan Greis](https://github.com/janrg). The original
+package provided a well-structured implementation of the Bahá'í (Badíʿ) calendar.
+
+In this fork, significant updates have been made to address issues with invalid dates in early years of the calendar and
+to improve overall accuracy. All credit for the original work goes to [Jan Greis](https://github.com/janrg), and this project
+builds upon their efforts to enhance functionality.
+
 ## Dependencies
 
 badiDate requires [Luxon](https://moment.github.io/luxon/). In order to use the `LocalBadiDate` class,
@@ -32,6 +41,10 @@ A detailed analysis of uncertainties is included in the code. The range of dates
 uncertainty in ΔT means the date of Naw-Rúz 2352 AD produced by the algorithm may not be correct.
 
 ## Changelog
+
+### 3.1.0
+
+- Updated all dependencies to the latest
 
 ### 3.0.2
 
